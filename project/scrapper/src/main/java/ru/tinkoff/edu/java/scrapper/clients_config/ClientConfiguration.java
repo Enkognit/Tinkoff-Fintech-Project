@@ -10,7 +10,7 @@ import ru.tinkoff.edu.java.scrapper.clients.GitHubClient;
 import ru.tinkoff.edu.java.scrapper.clients.StackOverflowClient;
 
 @Configuration
-public class ClientConfig {
+public class ClientConfiguration {
 
     @Value("${clients.github}")
     private String baseGitHubURL;

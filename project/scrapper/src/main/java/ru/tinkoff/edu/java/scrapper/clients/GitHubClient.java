@@ -5,7 +5,7 @@ import org.springframework.web.service.annotation.GetExchange;
 import org.springframework.web.service.annotation.HttpExchange;
 import ru.tinkoff.edu.java.scrapper.DTO.responses.gitHubClient.GitHubRepoInfoResponse;
 
-@HttpExchange(url = "", accept = "application/vnd.github+json", contentType = "application/json")
+@HttpExchange(url = "", accept = "application/vnd.github+json")
 public interface GitHubClient {
     @GetExchange(url = "/repos/{owner}/{repo}")
     GitHubRepoInfoResponse getRepositoryInfo(@PathVariable("owner") String owner, @PathVariable("repo") String repo);
