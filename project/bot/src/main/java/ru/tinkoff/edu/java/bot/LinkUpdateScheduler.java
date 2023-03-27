@@ -8,7 +8,6 @@ import ru.tinkoff.edu.java.bot.configuration.ApplicationConfig;
 
 @Component
 @EnableScheduling
-@EnableConfigurationProperties(ApplicationConfig.class)
 public class LinkUpdateScheduler {
 
     @Scheduled(fixedDelayString = "${app.scheduler.interval}")
