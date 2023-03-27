@@ -1,2 +1,7 @@
 app:
   test: 0
+  scheduler:
+    interval: 10
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
