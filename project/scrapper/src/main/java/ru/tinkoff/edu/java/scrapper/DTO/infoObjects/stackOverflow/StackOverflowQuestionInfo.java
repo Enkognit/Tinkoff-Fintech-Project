@@ -1,4 +1,4 @@
-package ru.tinkoff.edu.java.scrapper.DTO.responses.stackOverflowClient;
+package ru.tinkoff.edu.java.scrapper.DTO.infoObjects.stackOverflow;
 
 import java.net.URL;
 import java.time.OffsetDateTime;

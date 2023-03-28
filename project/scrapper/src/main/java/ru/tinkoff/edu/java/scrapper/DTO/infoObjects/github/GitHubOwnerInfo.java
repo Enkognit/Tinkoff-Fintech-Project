@@ -1,4 +1,4 @@
-package ru.tinkoff.edu.java.scrapper.DTO.responses.gitHubClient;
+package ru.tinkoff.edu.java.scrapper.DTO.infoObjects.github;
 
 import java.net.URL;
 
