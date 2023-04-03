@@ -6,3 +6,5 @@ springdoc:
 clients:
   gitHub: "https://api.github.com/"
   stackoverflow: "https://api.stackexchange.com/2.3/"
+server:
+  port: 8081

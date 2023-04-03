@@ -20,7 +20,7 @@ public class GithubLinkParser extends AbstractLinkParser {
             return getNext().parseURL(url);
         }
         String[] paths = url.getPath().split("/", 4);
-        if (paths.length < 3) {
+        if (paths.length < 3 || paths[1].equals("") || paths[2].equals("")) {
             return getNext().parseURL(url);
         }
         return paths[1] + "/" + paths[2];
