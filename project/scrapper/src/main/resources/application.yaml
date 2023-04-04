@@ -1,0 +1,10 @@
+app:
+  test: 0
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
+clients:
+  gitHub: "https://api.github.com/"
+  stackoverflow: "https://api.stackexchange.com/2.3/"
+server:
+  port: 8081

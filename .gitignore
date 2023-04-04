@@ -1,0 +1,8 @@
+# iml files
+*.iml
+
+# idea config file
+.idea
+
+# notes
+notes

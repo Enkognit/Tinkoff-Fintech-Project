@@ -1,0 +1,12 @@
+app:
+  test: 0
+  scheduler:
+    interval: 10
+  bottoken: ""
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
+clients:
+  scrapper: "localhost:8081"
+server:
+  port: 8080
