@@ -1,5 +1,5 @@
-import org.junit.Test;
-import org.mockito.Mockito;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.ValueSource;
 import ru.tinkoff.edu.java.link_parser.LinkParser;
 import ru.tinkoff.edu.java.link_parser.LinkParsersChain;
 import ru.tinkoff.edu.java.link_parser.parsers.GithubLinkParser;
@@ -11,36 +11,42 @@ import static org.assertj.core.api.Assertions.*;
 
 public class GithubLinksParserTests {
 
-    @Test
-    public void valid_links() throws MalformedURLException {
-
-        URL link1 = new URL("http://github.com/gg/tt");
-        URL link2 = new URL("http://github.com/gg/tt/pull/1");
-        URL link3 = new URL("http://github.com/Enkognit/Tinkoff-Fintech-Project");
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "http://github.com/gg/tt",
+            "http://github.com/gg/tt/pull/1",
+            "https://github.com/Enkognit/Tinkoff-Fintech-Project"
+            })
+    public void valid_links(String link) throws MalformedURLException {
+        URL url = new URL(link);
 
         LinkParsersChain def = new LinkParsersChain(new LinkParser.DefaultLinkParser());
 
         GithubLinkParser parser = new GithubLinkParser(def);
 
-        assertThat(parser.parseURL(link1)).isEqualTo("gg/tt");
-        assertThat(parser.parseURL(link2)).isEqualTo("gg/tt");
-        assertThat(parser.parseURL(link3)).isEqualTo("Enkognit/Tinkoff-Fintech-Project");
+        String[] path = link
+                .substring(link.indexOf(":") + "://github.com/".length())
+                .split("/", 3);
+        String result = path[0] + "/" + path[1];
+
+        assertThat(parser.parseURL(url)).isEqualTo(result);
     }
 
-    @Test
-    public void invalid_links() throws MalformedURLException {
+    @ParameterizedTest
+    @ValueSource(strings = {
+            "http://github.com/gg/",
+            "http://github.com/gg",
+            "http://github.com/gg//pull/1",
+            "http://stackoverflow.com/Enkognit/MathLog",
+            "http://githu.com/Enkognit/MathLog"
+    })
+    public void invalid_links(String link) throws MalformedURLException {
 
-        URL link1 = new URL("http://github.com/gg");
-        URL link2 = new URL("http://github.com/gg//pull/1");
-        URL link3 = new URL("http://stackoverflow.com/Enkognit/MathLog");
-        URL link4 = new URL("http://githu.com/Enkognit/MathLog");
+        URL url = new URL(link);
 
         LinkParsersChain def = new LinkParsersChain(new LinkParser.DefaultLinkParser());
 
         GithubLinkParser parser = new GithubLinkParser(def);
-        assertThat(parser.parseURL(link1)).isEqualTo(null);
-        assertThat(parser.parseURL(link2)).isEqualTo(null);
-        assertThat(parser.parseURL(link3)).isEqualTo(null);
-        assertThat(parser.parseURL(link4)).isEqualTo(null);
+        assertThat(parser.parseURL(url)).isEqualTo(null);
     }
 }

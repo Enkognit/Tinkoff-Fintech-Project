@@ -11,14 +11,14 @@ import java.util.List;
 @EnableScheduling
 public class LinkUpdateScheduler {
 
-    private final List<String> logger;
+    private final List<String> logs;
 
     public LinkUpdateScheduler() {
-        logger = new ArrayList<>();
+        logs = new ArrayList<>();
     }
 
     @Scheduled(fixedDelayString = "${app.scheduler.interval}")
     public void update() {
-        logger.add("Link update");
+        logs.add("Link update");
     }
 }
